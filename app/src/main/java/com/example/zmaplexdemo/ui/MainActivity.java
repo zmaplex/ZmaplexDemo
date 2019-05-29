@@ -2,14 +2,13 @@ package com.example.zmaplexdemo.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.example.zmaplexdemo.R;
 import com.example.zmaplexdemo.databinding.ActivityMainBinding;
-import com.example.zmaplexdemo.ui.permission.PermissionActivity;
+import com.example.zmaplexdemo.ui.activity.permission.PermissionActivity;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding mBinding;

@@ -12,7 +12,7 @@ import androidx.databinding.ViewDataBinding;
 import com.example.zmaplexdemo.mvp.presenter.IBasePresenter;
 
 
-public abstract class BaseActivity<P extends IBasePresenter, VB extends ViewDataBinding>
+public abstract class BaseZmxActivity<P extends IBasePresenter, VB extends ViewDataBinding>
         extends AppCompatActivity {
     public P mPresenter;
     protected VB mBinding;

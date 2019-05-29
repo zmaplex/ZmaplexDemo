@@ -14,7 +14,7 @@ import com.example.zmaplexdemo.mvp.view.BaseView;
  * add by Alex.Tang
  */
 
-public abstract class BaseFragment<P extends IBasePresenter> extends Fragment implements BaseView, View.OnClickListener {
+public abstract class BaseZmxFragment<P extends IBasePresenter> extends Fragment implements BaseView, View.OnClickListener {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
