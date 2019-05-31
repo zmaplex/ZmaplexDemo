@@ -9,6 +9,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
+import androidx.lifecycle.ViewModelProviders;
+
+import java.lang.reflect.ParameterizedType;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -16,8 +20,7 @@ import javax.inject.Inject;
 public abstract class BaseMVVMActivity<VM extends ABSViewModel, VB extends ViewDataBinding> extends AppCompatActivity {
 
     @Inject
-    protected VM mViewModel;
-
+    protected VM mVM;
     protected VB mBinding;
 
     @Override
@@ -25,6 +28,8 @@ public abstract class BaseMVVMActivity<VM extends ABSViewModel, VB extends ViewD
         super.onCreate(savedInstanceState);
         View rootView = getLayoutInflater().inflate(this.getLayoutId(), null, false);
         mBinding = DataBindingUtil.bind(rootView);
+        Objects.requireNonNull(mBinding).setLifecycleOwner(this);
+        mVM = ViewModelProviders.of(this).get(getTClass());
         super.setContentView(rootView);
     }
 
@@ -34,5 +39,12 @@ public abstract class BaseMVVMActivity<VM extends ABSViewModel, VB extends ViewD
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    private Class<VM> getTClass() {
+        Class<VM> tClass = (Class<VM>) ((ParameterizedType) getClass()
+                .getGenericSuperclass())
+                .getActualTypeArguments()[0];
+        return tClass;
     }
 }
